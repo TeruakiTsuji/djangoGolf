@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis" />
+<title>松崎杯</title>
+<link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}" />
+</head>
+<body>
+<div id="wrapper">
+<div id="header">
+<h1>index</h1>
+<p class="logo"><a href="/">松崎杯</a></p>
+<p class="description">このサイトはDjango/Pythonで作成されています。</p>
+</div>
+<div id="globalnavi">
+<ul>
+  <li><a href="/">ホーム</a></li>
+  <li><a href="/place">全成績検索</a></li>
+  <li><a href="/next">次回開催日</a></li>
+  <li><a href="/pairing">組合せ</a></li>
+<//ul>
+</div>
+<div id="container">
+<div id="contents">
+
+<p class="topic-path"><a href="/">Home</a> &gt; <a href="/next">次回開催日</a></p>
+
+        <table border="1" cellspacing="0" cellpadding="0">
+        <tr bgcolor="#ffffc0">
+            <th>開催日</th>
+            <th>場所</th>
+        </tr>
+        {% for row in results %}
+        <tr>
+            <tr>
+                <td>{{row.open_dt}}</td>
+                <td>{{row.place}}</td>
+            </tr>
+        </tr>
+        {% endfor %}
+        </table>
+
+</div><!-- / contents end -->
+</div><!-- / container end -->
+<div id="footer">
+<p>Copyright &copy; 松崎杯. All Rights Reserved.</p>
+</div><!-- / footer end -->
+</div><!-- / wrapper end -->
+</body>
+</html>
