@@ -3,7 +3,8 @@ from django.views.generic import TemplateView
 
 import datetime
 from index import LocalDate
-from index import Sqlite
+#from index import Sqlite
+from index import Database
 
 # Create your views here.
 class PairingTemplateView(TemplateView):
@@ -20,18 +21,18 @@ class PairingTemplateView(TemplateView):
         	print ('arg (1)')
         	dt_now = datetime.datetime.now()
         	from_dt = dt_now.strftime('%Y') + '0101'
-        	result = Sqlite.execute('select * from pairing where open_dt >= \'' + from_dt + '\' order by open_dt')
+        	result = Database.execute('select * from pairing where open_dt >= \'' + from_dt + '\' order by open_dt')
         else:
         	print ('arg (0)')
         	print (len(parms))
         	if len(parms) == 3 and len(parms[2])>0:
         		open_dt = parms[2]
         		print ('open_dt:' + open_dt)
-        		result = Sqlite.execute('select * from pairing where open_dt = \'' + open_dt + '\' order by open_dt')
+        		result = Database.execute('select * from pairing where open_dt = \'' + open_dt + '\' order by open_dt')
         	else:
-        		result = Sqlite.execute('select * from pairing order by open_dt')
+        		result = Database.execute('select * from pairing order by open_dt')
 
-        users = Sqlite.execute('select * from users')
+        users = Database.execute('select * from users')
         results = [];
 
         for row in result:
