@@ -3,7 +3,8 @@ from django.views.generic import TemplateView
 
 import datetime
 from index import LocalDate
-from index import Sqlite
+#from index import Sqlite
+from index import Database
 from index import Users
 from index import Score
 
@@ -18,11 +19,11 @@ class ScoreTemplateView(TemplateView):
         parms = parm.split('/');
         if len(parms) == 3 and len(parms[2]) > 0:
         	open_dt = parms[2]
-        	result = Sqlite.execute('select * from tran_score where date = \'' + open_dt + '\' order by date, num')
+        	result = Database.execute('select * from tran_score where date = \'' + open_dt + '\' order by date, num')
         else:
-        	result = Sqlite.execute('select * from tran_score order by date, num')
+        	result = Database.execute('select * from tran_score order by date, num')
 
-        users = Sqlite.execute('select * from users')
+        users = Database.execute('select * from users')
         results = [];
 
         for row in result:

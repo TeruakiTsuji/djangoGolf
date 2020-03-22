@@ -3,7 +3,8 @@ from django.views.generic import TemplateView
 
 import datetime
 from index import LocalDate
-from index import Sqlite
+#from index import Sqlite
+from index import Database
 from index import Users
 
 # Create your views here.
@@ -15,8 +16,8 @@ class PlaceTemplateView(TemplateView):
 
         results = [];
         dt_now = datetime.datetime.now()
-        result = Sqlite.execute('select * from tran_place order by date')
-        users = Sqlite.execute('select * from users')
+        result = Database.execute('select * from tran_place order by date')
+        users = Database.execute('select * from users')
 
         for row in result:
         	wdate = LocalDate.wdatey(row[0])
